@@ -34,11 +34,11 @@ On va ensuite priorisé ces fonctionnalités selon l'ordre d'assemblage.
 
 ```mermaid
 graph TD;
-    1.1-->1.2;
-    1.2-->2.4;
-    2.4-->1.3;
-    1.3-->2.1;
-    1.3-->2.2;
-    2.1 & 2.2-->2.3;
-    2.3-->2.5;
+    A[1.1 Données géographiques]-->B[1.2 Graphe non-orienté];
+    B-->C[2.4 Carte de fond];
+    C-->D[1.3 Modèle de Pathfinding];
+    D-->E[2.1 Données complémentaires];
+    D-->F[2.2 Modèle de décision];
+    E & F-->G[2.3 Interface modèles pathfinding/Décision];
+    G-->H[2.5 Rendu GPS];
 ```
