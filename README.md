@@ -19,9 +19,9 @@ Pour répondre à ce besoin on va définir les différentes fonctionnalités pri
 
 **Fonctionnalités PRIMAIRES (rang 0)**
 1. Pour la **partie itinéraire** il nous faut :
-   1.1. des données géographiques
-   1.2. une architechture type graphe non-orienté
-   1.3. un modèle de pathfinding pour parcourir le graphe.
+   1. des données géographiques
+   2. une architechture type graphe non-orienté
+   3. un modèle de pathfinding pour parcourir le graphe.
 
 2. Pour la **partie génération (d'un itinéraire)** il nous faut :
    1. Des données complémentaires de valorisation (data qui donne un poid à la prise de décision)
@@ -31,8 +31,10 @@ Pour répondre à ce besoin on va définir les différentes fonctionnalités pri
    5. Un support gps pour le rendu (itinéraire exportable)
   
 On va ensuite priorisé ces fonctionnalités selon l'ordre d'assemblage.
-
 ```mermaid
+---
+title: Feuille de route (fonctionnalités)
+---
 graph TD;
     A[1.1 Données géographiques]-->B[1.2 Graphe non-orienté];
     B-->C[2.4 Carte de fond];
@@ -42,3 +44,5 @@ graph TD;
     E & F-->G[2.3 Interface modèles pathfinding/Décision];
     G-->H[2.5 Rendu GPS];
 ```
+
+
