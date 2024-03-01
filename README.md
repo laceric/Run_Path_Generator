@@ -13,19 +13,27 @@ Projet visant à créer un générateur d'itinéraire pour la course à pied.
 
 
 ### Objectifs globaux
-
 Le principe est de faire un générateur d'itinéraire pour la course à pied.
-Pour répondre à ce besoin on va définir les différentes fonctionnalitées selon leur niveau d'importance.
 
-#### Fonctionnalité PRIMAIRES (rang 0)
-1. Pour la partie itinéraire il nous faut :
+Pour répondre à ce besoin on va définir les différentes fonctionnalités primaires.
+
+**Fonctionnalités PRIMAIRES (rang 0)**
+1. Pour la **partie itinéraire** il nous faut :
    1. des données géographiques
    2. une architechture type graphe non-orienté
-   3. un support visuel pour le rendu (carte de fond avec superposition du résultat)
-   4. un modèle de pathfinding pour parcourir le graphe.
+   3. un modèle de pathfinding pour parcourir le graphe.
 
-2. Pour la partie génération (d'un itinéraire) il nous faut :
+2. Pour la **partie génération (d'un itinéraire)** il nous faut :
    1. Des données complémentaires de valorisation (data qui donne un poid à la prise de décision)
    2. Un modèle de décision (Machine learning, deep learning, ... ?)
    3. Une interface modèle_décisionnaire/modèle_de_pathfinding
+   4. Un support visuel pour le rendu (carte de fond avec superposition du résultat)
+   5. Un support gps pour le rendu (itinéraire exportable)
+  
+On va ensuite priorisé ces fonctionnalités selon l'ordre d'assemblage.
 
+'''mermaid
+graph TD;
+    1.1-->1.2;
+    1.2-->2.4;
+'''
