@@ -32,8 +32,8 @@ Pour répondre à ce besoin on va définir les différentes fonctionnalités pri
   
 On va ensuite priorisé ces fonctionnalités selon l'ordre d'assemblage.
 
-'''mermaid
+```mermaid
 graph TD;
     1.1-->1.2;
     1.2-->2.4;
-'''
+```
