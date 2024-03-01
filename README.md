@@ -19,9 +19,9 @@ Pour répondre à ce besoin on va définir les différentes fonctionnalités pri
 
 **Fonctionnalités PRIMAIRES (rang 0)**
 1. Pour la **partie itinéraire** il nous faut :
-   1. des données géographiques
-   2. une architechture type graphe non-orienté
-   3. un modèle de pathfinding pour parcourir le graphe.
+   1.1 des données géographiques
+   1.2 une architechture type graphe non-orienté
+   1.3 un modèle de pathfinding pour parcourir le graphe.
 
 2. Pour la **partie génération (d'un itinéraire)** il nous faut :
    1. Des données complémentaires de valorisation (data qui donne un poid à la prise de décision)
