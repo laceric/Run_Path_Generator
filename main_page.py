@@ -296,7 +296,7 @@ elif st.session_state['Key_Menu'] == 'Démo':
 
         else: 
             folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], popup=folium.Popup(html=custom_popup), tooltip="Départ").add_to(m)          
-            geolocator = Nominatim(user_agent="my_app")
+            geolocator = Nominatim(user_agent="rpg")
             location = geolocator.reverse((st.session_state['last_clicked'][0], st.session_state['last_clicked'][1]), exactly_one=True)
             
             # Afficher du texte avec différentes styles
