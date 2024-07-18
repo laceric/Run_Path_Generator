@@ -90,6 +90,8 @@ def generation(graph, df, lat, lon, distance):
                 closest_distance = current_distance
                 closest_point = (row['osmid'], row['lat'], row['lon'])
     except Exception as e:
+        st.markdown(f"reference_point : {reference_point}")
+        st.markdown(f"current_point : {current_point}")
         st.markdown(f"Erreur : {e}")
 
     orig = closest_point[0]
