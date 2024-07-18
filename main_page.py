@@ -72,8 +72,10 @@ def show_map_ini():
     folium_static(m, width=725)
 
 def generation(graph, df, lat, lon, distance):
-
-    orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
+    try:
+        orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
+    except Exception as e:
+        print(f"Erreur : {e}")
 
     route = df.loc[orig, 'route']
     route = ast.literal_eval(route)
