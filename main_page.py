@@ -6,7 +6,7 @@ from folium.plugins import Realtime
 from streamlit_folium import st_folium, folium_static
 
 import osmnx as ox
-import sklearn
+from geopy.distance import distance
 import pandas as pd
 
 import ast
@@ -73,11 +73,24 @@ def show_map_ini():
     folium_static(m, width=725)
 
 def generation(graph, df, lat, lon, distance):
-    try:
-        orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
-    except Exception as e:
-        st.markdown(f"Erreur : {e}")
+    # try:
+    #     orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
+    # except Exception as e:
+    #     st.markdown(f"Erreur : {e}")
 
+    # Calcul des distances et détermination du point le plus proche
+    closest_point = None
+    closest_distance = float('inf')
+    
+    for index, row in df_points.iterrows():
+        current_point = (row['lat'], row['lon'])
+        current_distance = distance(reference_point, current_point).km
+        if current_distance < closest_distance:
+            closest_distance = current_distance
+            closest_point = (row['osmid'], row['lat'], row['lon'])
+
+    orig = closest_point[0]
+    
     route = df.loc[orig, 'route']
     route = ast.literal_eval(route)
     dist = df.loc[orig, 'dist_route']
