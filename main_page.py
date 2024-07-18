@@ -20,13 +20,13 @@ try:
         page_icon=":memo:",
         layout="wide",
         initial_sidebar_state="expanded",
-        theme={
-            "primaryColor": "#F63366",
-            "backgroundColor": "#FFFFFF",
-            "secondaryBackgroundColor": "#F0F2F6",
-            "textColor": "#262730",
-            "font": "sans serif"
-        }
+        # theme={
+        #     "primaryColor": "#F63366",
+        #     "backgroundColor": "#FFFFFF",
+        #     "secondaryBackgroundColor": "#F0F2F6",
+        #     "textColor": "#262730",
+        #     "font": "sans serif"
+        # }
     )
 except Exception as e:
     st.markdown(f"Erreur: {e}")
