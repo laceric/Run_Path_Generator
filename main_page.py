@@ -8,6 +8,8 @@ from streamlit_folium import st_folium, folium_static
 import osmnx as ox
 import pandas as pd
 import ast
+import zipfile
+import os
 
 import gpxpy
 import gpxpy.gpx
@@ -17,12 +19,31 @@ from shapely.geometry import Point
 
 
 @st.cache_data 
-def load_graph(filepath):
-    return ox.load_graphml(filepath)
+def load_graph(zip_filename, filepath):
+    # Ouvrir le fichier zip et extraire le fichier GraphML temporairement
+    with zipfile.ZipFile(zip_filename, 'r') as zipf:
+        zipf.extract(filepath, path='.')
+
+    # Charger le graphe avec osmnx
+    G = ox.load_graphml(filepath)
+
+    # Supprimer le fichier temporaire
+    os.remove(filepath)
+    return G
+    # return ox.load_graphml(filepath)
 
 @st.cache_data 
-def load_dataframe(filepath):
-    return pd.read_csv(filepath)
+def load_dataframe(zip_filename, filepath):
+    # Ouvrir le fichier zip et extraire le fichier GraphML temporairement
+    with zipfile.ZipFile(zip_filename, 'r') as zipf:
+        zipf.extract(filepath, path='.')
+
+    # Charger le data frame
+    df = pd.read_csv(filepath)
+
+    # Supprimer le fichier temporaire
+    os.remove(filepath)
+    return df
 
 # Fonction pour vérifier si un point est dans Paris
 def est_dans_paris(paris_boundary, lat, lon):
@@ -203,13 +224,15 @@ if st.session_state['Key_Menu'] == "Acceuil":
 
 elif st.session_state['Key_Menu'] == 'Démo':
     # Chargement du graph
-    filepath_graph = "graphe_prepro_paris.graphml"
-    graph = load_graph(filepath_graph)
+    zip_filename = "Graphe_prepro_paris.zip"
+    filepath_graph = "Graphe_prepro_paris.graphml"
+    graph = load_graph(zip_filename, filepath_graph)
 
     # Chargement du dataframe
-    filepath_df = "x_end.csv"
-    df = load_dataframe(filepath_df)
-
+    zip_filename = "x_end.zip"
+    filepath_df = "X_end.csv"
+    df = load_dataframe(zip_filename, filepath_df)
+    
     # with col2Menu:
     # with place_holder_but_reini.container():
     reinitialisation = st.button("Réinitialisation")
