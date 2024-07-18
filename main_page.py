@@ -7,7 +7,6 @@ config_data = toml.load(".streamlit/config.toml")
 
 # # Appliquer les configurations de thème
 theme_config = config_data.get("theme", {})
-st.write(theme)
 try:
     st.set_page_config(
     page_title="Your App Title",
