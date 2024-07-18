@@ -75,7 +75,7 @@ def generation(graph, df, lat, lon, distance):
     try:
         orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
     except Exception as e:
-        print(f"Erreur : {e}")
+        st.markdown(f"Erreur : {e}")
 
     route = df.loc[orig, 'route']
     route = ast.literal_eval(route)
