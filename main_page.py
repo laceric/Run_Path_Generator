@@ -6,20 +6,16 @@ import toml
 config_data = toml.load(".streamlit/config.toml")
 
 # # Appliquer les configurations de thème
-theme = config_data.get("theme", {})
-# st.set_page_config(
-#     page_title="Your App Title",
-#     page_icon=":memo:",
-#     layout="wide",
-#     initial_sidebar_state="expanded",
-#     **theme
-# )
+theme_config = config_data.get("theme", {})
 st.write(theme)
 try:
-    pc = st.get_option('theme.primaryColor')
-    bc = st.get_option('theme.backgroundColor')
-    sbc = st.get_option('theme.secondaryBackgroundColor')
-    tc = st.get_option('theme.textColor')
+    st.set_page_config(
+    page_title="Your App Title",
+    page_icon=":memo:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    **theme_config
+        )    
 except Exception as e:
     st.markdown(f"Erreur: {e}")
 
