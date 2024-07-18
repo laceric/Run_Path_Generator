@@ -165,12 +165,12 @@ if "Bouton_Menu" not in st.session_state:
 
 # Initialiser st.session_state["Liste_Menu"] s'il n'existe pas
 if "Liste_Menu" not in st.session_state:
-    st.session_state['Liste_Menu'] = {'Acceuil':0,
+    st.session_state['Liste_Menu'] = {'Accueil':0,
                                       'Démo':1}
 
 # Initialiser st.session_state["Key_Menu"] s'il n'existe pas
 if "Key_Menu" not in st.session_state:
-    st.session_state['Key_Menu'] = 'Acceuil'
+    st.session_state['Key_Menu'] = 'Accueil'
 
 # Initialiser st.session_state["dist"] s'il n'existe pas
 if "dist" not in st.session_state:
@@ -221,7 +221,7 @@ with st.sidebar:
         if st.session_state['Bouton_Menu']:
             with col2menucont:
             # Liste des options pour la selectbox
-                options = ['Acceuil', 'Démo']
+                options = ['Accueil', 'Démo']
 
             # Affichage de la selectbox (markdown pour replacer la liste)
                 st.markdown('')
@@ -247,7 +247,7 @@ with st.sidebar:
 ###############################################################################################################
 
 ###############################################################################################################
-if st.session_state['Key_Menu'] == "Acceuil":
+if st.session_state['Key_Menu'] == "Accueil":
     # Titre
     st.title("Running Path Generator")
 
