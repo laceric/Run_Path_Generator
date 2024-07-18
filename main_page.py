@@ -91,11 +91,6 @@ def show_map_ini():
     folium_static(m, width=725)
 
 def generation(graph, df, lat, lon, distance):
-    # try:
-    #     orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
-    # except Exception as e:
-    #     st.markdown(f"Erreur : {e}")
-
     # Calcul des distances et détermination du point le plus proche
     reference_point = (lat, lon)
     closest_point = None
@@ -268,8 +263,6 @@ elif st.session_state['Key_Menu'] == 'Démo':
     filepath_df = "X_end.csv"
     df = load_dataframe(zip_filename, filepath_df)
     
-    # with col2Menu:
-    # with place_holder_but_reini.container():
     reinitialisation = st.button("Réinitialisation")
 
     if reinitialisation:
@@ -280,10 +273,6 @@ elif st.session_state['Key_Menu'] == 'Démo':
         st.session_state['last_clicked'] = [None, None]
         st.session_state['route'] = False
         st.session_state['dist_route'] = False
-
-
-    # Création de l'emplacement du bouton de réinitialisation
-    place_holder_but_reini = st.empty()
 
     # Création de l'emplacement du message d'erreur
     place_holder_err = st.empty()
@@ -315,7 +304,6 @@ elif st.session_state['Key_Menu'] == 'Démo':
         in_paris = controle_in_paris(st.session_state['last_clicked'][0],st.session_state['last_clicked'][1])
 
         if not in_paris:
-            # st.markdown("Cliquer sur la carte pour déplacer le marker de départ dans Paris.")
             # Affichage de l'erreur
             with place_holder_err.container():
                 st.error('''
@@ -331,20 +319,6 @@ elif st.session_state['Key_Menu'] == 'Démo':
 
         else: 
             folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], popup=folium.Popup(html=custom_popup), tooltip="Départ").add_to(m)          
-            # geolocator = Nominatim(user_agent="rpg")
-            # location = geolocator.reverse((st.session_state['last_clicked'][0], st.session_state['last_clicked'][1]), exactly_one=True)
-            
-            # Afficher du texte avec différentes styles
-            # st.markdown("<h1 style='color: blue;'>Titre en bleu</h1>", unsafe_allow_html=True)
-            # st.markdown("<p style='font-size: 20px; font-family: Arial;'>Texte de taille 20px en Arial</p>", unsafe_allow_html=True)
-            # st.markdown("<p style='font-weight: bold;'>Texte en gras</p>", unsafe_allow_html=True)
-            # st.markdown("<p style='text-decoration: underline;'>Texte souligné</p>", unsafe_allow_html=True)
-
-            # Afficher l'adresse obtenue
-            # if location:
-            #     st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Adresse du point de départ :</p> {location}", unsafe_allow_html=True)
-            #     st.write("")
-            #     st.write("")
               
             st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Coordonnées du point de départ [lat, lon]:</p> {st.session_state['last_clicked']}", unsafe_allow_html=True)
             st.write("")
@@ -354,9 +328,9 @@ elif st.session_state['Key_Menu'] == 'Démo':
 
             col1dist, col2dist, _ = st.columns([4, 4, 1])   
             with col1dist:
-                st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Distance visée:</p> {st.session_state['dist']}", unsafe_allow_html=True)
+                st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Distance visée:</p> {st.session_state['dist']} mètres.", unsafe_allow_html=True)
             with col2dist:
-                st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Distance du parcours généré:</p> {st.session_state['dist_route']}m.", unsafe_allow_html=True)
+                st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Distance du parcours généré:</p> {st.session_state['dist_route']} mètres.", unsafe_allow_html=True)
 
             # Tracez le trajet GPX sur la carte
             folium.plugins.AntPath(locations=st.session_state['route'], weight=6, color='blue').add_to(m)
