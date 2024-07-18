@@ -9,11 +9,11 @@ config_data = toml.load(".streamlit/config.toml")
 theme_config = config_data.get("theme", {})
 try:
     st.set_page_config(
-    page_title="Your App Title",
+    page_title="projet RPG - Eric Lachard",
     page_icon=":memo:",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded",
-    **theme_config
+    # **theme_config
         )    
 except Exception as e:
     st.markdown(f"Erreur: {e}")
