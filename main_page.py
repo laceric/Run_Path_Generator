@@ -14,14 +14,12 @@ theme = config_data.get("theme", {})
 #     initial_sidebar_state="expanded",
 #     **theme
 # )
+st.write(theme)
 try:
-    st.set_page_config(
-        page_title="Projet RPG Eric Lachard",
-        page_icon=":memo:",
-        layout="centered",
-        initial_sidebar_state="expanded",
-        menu_items = theme
-    )
+    pc = st.get_option('theme.primaryColor')
+    bc = st.get_option('theme.backgroundColor')
+    sbc = st.get_option('theme.secondaryBackgroundColor')
+    tc = st.get_option('theme.textColor')
 except Exception as e:
     st.markdown(f"Erreur: {e}")
 
