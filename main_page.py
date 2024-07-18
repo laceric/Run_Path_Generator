@@ -6,6 +6,7 @@ from folium.plugins import Realtime
 from streamlit_folium import st_folium, folium_static
 
 import osmnx as ox
+import sklearn
 import pandas as pd
 
 import ast
