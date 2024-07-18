@@ -82,7 +82,7 @@ def generation(graph, df, lat, lon, distance):
     closest_point = None
     closest_distance = float('inf')
     
-    for index, row in df_points.iterrows():
+    for index, row in df.iterrows():
         current_point = (row['lat'], row['lon'])
         current_distance = distance(reference_point, current_point).km
         if current_distance < closest_distance:
