@@ -296,8 +296,8 @@ elif st.session_state['Key_Menu'] == 'Démo':
 
         else: 
             folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], popup=folium.Popup(html=custom_popup), tooltip="Départ").add_to(m)          
-            geolocator = Nominatim(user_agent="rpg")
-            location = geolocator.reverse((st.session_state['last_clicked'][0], st.session_state['last_clicked'][1]), exactly_one=True)
+            # geolocator = Nominatim(user_agent="rpg")
+            # location = geolocator.reverse((st.session_state['last_clicked'][0], st.session_state['last_clicked'][1]), exactly_one=True)
             
             # Afficher du texte avec différentes styles
             # st.markdown("<h1 style='color: blue;'>Titre en bleu</h1>", unsafe_allow_html=True)
@@ -306,10 +306,10 @@ elif st.session_state['Key_Menu'] == 'Démo':
             # st.markdown("<p style='text-decoration: underline;'>Texte souligné</p>", unsafe_allow_html=True)
 
             # Afficher l'adresse obtenue
-            if location:
-                st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Adresse du point de départ :</p> {location}", unsafe_allow_html=True)
-                st.write("")
-                st.write("")
+            # if location:
+            #     st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Adresse du point de départ :</p> {location}", unsafe_allow_html=True)
+            #     st.write("")
+            #     st.write("")
               
             st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Coordonnées du point de départ [lat, lon]:</p> {st.session_state['last_clicked']}", unsafe_allow_html=True)
             st.write("")
