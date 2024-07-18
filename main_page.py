@@ -3,16 +3,30 @@ import streamlit as st
 import toml
 
 # Charger les configurations de thème à partir du fichier config.toml
-config_data = toml.load(".streamlit/config.toml")
+# config_data = toml.load(".streamlit/config.toml")
 
-# Appliquer les configurations de thème
-theme = config_data.get("theme", {})
+# # Appliquer les configurations de thème
+# theme = config_data.get("theme", {})
+# st.set_page_config(
+#     page_title="Your App Title",
+#     page_icon=":memo:",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+#     **theme
+# )
+
 st.set_page_config(
     page_title="Your App Title",
     page_icon=":memo:",
     layout="wide",
     initial_sidebar_state="expanded",
-    **theme
+    theme={
+        "primaryColor": "#F63366",
+        "backgroundColor": "#FFFFFF",
+        "secondaryBackgroundColor": "#F0F2F6",
+        "textColor": "#262730",
+        "font": "sans serif"
+    }
 )
 
 from geopy.geocoders import Nominatim
