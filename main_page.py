@@ -6,7 +6,7 @@ from folium.plugins import Realtime
 from streamlit_folium import st_folium, folium_static
 
 import osmnx as ox
-from geopy.distance import distance
+from geopy.distance import geodesic
 import pandas as pd
 
 import ast
@@ -89,7 +89,7 @@ def generation(graph, df, lat, lon, distance):
         for index, row in df.iterrows():
             current_point = (row['lat'], row['lon'])
             st.markdown(f"current_point {type(current_point)}")
-            current_distance = distance(reference_point, current_point).km
+            current_distance = geodesic(reference_point, current_point).km
             if current_distance < closest_distance:
                 closest_distance = current_distance
                 closest_point = (row['osmid'], row['lat'], row['lon'])
