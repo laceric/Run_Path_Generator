@@ -79,6 +79,7 @@ def generation(graph, df, lat, lon, distance):
     #     st.markdown(f"Erreur : {e}")
 
     # Calcul des distances et détermination du point le plus proche
+    reference_point = (lat, lon)
     closest_point = None
     closest_distance = float('inf')
     
