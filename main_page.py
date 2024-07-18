@@ -79,12 +79,16 @@ def generation(graph, df, lat, lon, distance):
     #     st.markdown(f"Erreur : {e}")
 
     # Calcul des distances et détermination du point le plus proche
+    st.markdown(f"lat {type(lat)}")
+    st.markdown(f"lon {type(lon)}")
     reference_point = (lat, lon)
+    st.markdown(f"reference_point {type(reference_point)}")
     closest_point = None
     closest_distance = float('inf')
     try:
         for index, row in df.iterrows():
             current_point = (row['lat'], row['lon'])
+            st.markdown(f"current_point {type(current_point)}")
             current_distance = distance(reference_point, current_point).km
             if current_distance < closest_distance:
                 closest_distance = current_distance
