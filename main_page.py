@@ -8,10 +8,10 @@ config_data = toml.load(".streamlit/config.toml")
 # Appliquer les configurations de thème
 theme = config_data.get("theme", {})
 st.set_page_config(
-    # page_title="Your App Title",
-    # page_icon=":memo:",
-    # layout="wide",
-    # initial_sidebar_state="expanded",
+    page_title="Your App Title",
+    page_icon=":memo:",
+    layout="wide",
+    initial_sidebar_state="expanded",
     **theme
 )
 
