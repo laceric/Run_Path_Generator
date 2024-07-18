@@ -70,9 +70,88 @@ def show_map_ini():
     m = folium.Map(location=CENTER_START, zoom_start=ZOOM_START)
     folium_static(m, width=725)
 
+def home_nearest_nodes(G, X, Y, return_dist=False):
+    """
+    Find the nearest node to a point or to each of several points.
+
+    If `X` and `Y` are single coordinate values, this will return the nearest
+    node to that point. If `X` and `Y` are lists of coordinate values, this
+    will return the nearest node to each point.
+
+    If the graph is projected, this uses a k-d tree for euclidean nearest
+    neighbor search, which requires that scipy is installed as an optional
+    dependency. If it is unprojected, this uses a ball tree for haversine
+    nearest neighbor search, which requires that scikit-learn is installed as
+    an optional dependency.
+
+    Parameters
+    ----------
+    G : networkx.MultiDiGraph
+        graph in which to find nearest nodes
+    X : float or list
+        points' x (longitude) coordinates, in same CRS/units as graph and
+        containing no nulls
+    Y : float or list
+        points' y (latitude) coordinates, in same CRS/units as graph and
+        containing no nulls
+    return_dist : bool
+        optionally also return distance between points and nearest nodes
+
+    Returns
+    -------
+    nn or (nn, dist) : int/list or tuple
+        nearest node IDs or optionally a tuple where `dist` contains distances
+        between the points and their nearest nodes
+    """
+    is_scalar = False
+    if not (hasattr(X, "__iter__") and hasattr(Y, "__iter__")):
+        # make coordinates arrays if user passed non-iterable values
+        is_scalar = True
+        X = np.array([X])
+        Y = np.array([Y])
+
+    if np.isnan(X).any() or np.isnan(Y).any():  # pragma: no cover
+        msg = "`X` and `Y` cannot contain nulls"
+        raise ValueError(msg)
+    nodes = convert.graph_to_gdfs(G, edges=False, node_geometry=False)[["x", "y"]]
+
+    if projection.is_projected(G.graph["crs"]):
+        # if projected, use k-d tree for euclidean nearest-neighbor search
+        if cKDTree is None:  # pragma: no cover
+            msg = "scipy must be installed to search a projected graph"
+            raise ImportError(msg)
+        dist, pos = cKDTree(nodes).query(np.array([X, Y]).T, k=1)
+        nn = nodes.index[pos]
+
+    else:
+        # if unprojected, use ball tree for haversine nearest-neighbor search
+        if BallTree is None:  # pragma: no cover
+            msg = "scikit-learn must be installed to search an unprojected graph"
+            raise ImportError(msg)
+        # haversine requires lat, lon coords in radians
+        nodes_rad = np.deg2rad(nodes[["y", "x"]])
+        points_rad = np.deg2rad(np.array([Y, X]).T)
+        dist, pos = BallTree(nodes_rad, metric="haversine").query(points_rad, k=1)
+        dist = dist[:, 0] * EARTH_RADIUS_M  # convert radians -> meters
+        nn = nodes.index[pos[:, 0]]
+
+    # convert results to correct types for return
+    nn = nn.tolist()
+    dist = dist.tolist()
+    if is_scalar:
+        nn = nn[0]
+        dist = dist[0]
+
+    if return_dist:
+        return nn, dist
+
+    # otherwise
+    return nn
+
 def generation(graph, df, lat, lon, distance):
 
-    orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
+    # orig = ox.distance.nearest_nodes(graph, X=lon, Y=lat)  
+    orig = home_nearest_nodes(graph, X=lon, Y=lat) 
 
     route = df.loc[orig, 'route']
     route = ast.literal_eval(route)
