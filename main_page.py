@@ -82,13 +82,15 @@ def generation(graph, df, lat, lon, distance):
     reference_point = (lat, lon)
     closest_point = None
     closest_distance = float('inf')
-    
-    for index, row in df.iterrows():
-        current_point = (row['lat'], row['lon'])
-        current_distance = distance(reference_point, current_point).km
-        if current_distance < closest_distance:
-            closest_distance = current_distance
-            closest_point = (row['osmid'], row['lat'], row['lon'])
+    try:
+        for index, row in df.iterrows():
+            current_point = (row['lat'], row['lon'])
+            current_distance = distance(reference_point, current_point).km
+            if current_distance < closest_distance:
+                closest_distance = current_distance
+                closest_point = (row['osmid'], row['lat'], row['lon'])
+    except Exception as e:
+        st.markdown(f"Erreur : {e}")
 
     orig = closest_point[0]
     
