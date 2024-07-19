@@ -2,21 +2,21 @@ import folium
 import streamlit as st
 import toml
 
-# Charger les configurations de thème à partir du fichier config.toml
-config_data = toml.load(".streamlit/config.toml")
+# # Charger les configurations de thème à partir du fichier config.toml
+# config_data = toml.load(".streamlit/config.toml")
 
-# # Appliquer les configurations de thème
-theme_config = config_data.get("theme", {})
-try:
-    st.set_page_config(
-    page_title="projet RPG - Eric Lachard",
-    page_icon=":memo:",
-    layout="centered",
-    initial_sidebar_state="expanded",
-    # **theme_config
-        )    
-except Exception as e:
-    st.markdown(f"Erreur: {e}")
+# # # Appliquer les configurations de thème
+# theme_config = config_data.get("theme", {})
+# try:
+#     st.set_page_config(
+#     page_title="projet RPG - Eric Lachard",
+#     page_icon=":memo:",
+#     layout="centered",
+#     initial_sidebar_state="expanded",
+#     # **theme_config
+#         )    
+# except Exception as e:
+#     st.markdown(f"Erreur: {e}")
 
 from geopy.geocoders import Nominatim
 from folium.plugins import Realtime
