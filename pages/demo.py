@@ -171,24 +171,18 @@ if st.session_state['init']:
 #     st.session_state['dist_route'] = False
 
 # Ajouter un gros bouton "Restart" en rouge
-st.markdown(
-    """
-    <style>
-    .restart-button {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: red;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    </style>
-    """
-)
+# Personnaliser un bouton avec du HTML dans st.markdown
+button_html = """
+    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none;
+                   border-radius: 5px; text-align: center; text-decoration: none;
+                   display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
+        Cliquez ici !
+    </button>
+"""
 
-if st.button("Restart", key="restart_button", help="Cliquez ici pour redémarrer"):
+if st.markdown(button_html, unsafe_allow_html=True):
+    st.write("Le bouton personnalisé a été cliqué !")
+    
     # réinitialisation des données
     st.session_state['dist'] = 10000
     st.session_state['location'] = CENTER_START
