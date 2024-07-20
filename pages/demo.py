@@ -234,8 +234,9 @@ else:
         st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Coordonnées du point de départ [lat, lon]:</p> {st.session_state['last_clicked']}", unsafe_allow_html=True)
         st.write("")
         st.write("")
-
-        st.session_state['dist_route'], st.session_state['route'] = generation(df, st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
+        
+        if st.session_state['dist_route'] == False:
+            st.session_state['dist_route'], st.session_state['route'] = generation(df, st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
 
         col1dist, col2dist, _ = st.columns([4, 4, 1])   
         with col1dist:
