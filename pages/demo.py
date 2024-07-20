@@ -176,7 +176,7 @@ filepath_graph = "Graphe_prepro_paris.graphml"
 graph = load_graph(zip_filename, filepath_graph)
 
 # Chargement du dataframe
-zip_filename = "x_end.zip"
+zip_filename = "X_end.zip"
 filepath_df = "X_end.csv"
 df = load_dataframe(zip_filename, filepath_df)
 
