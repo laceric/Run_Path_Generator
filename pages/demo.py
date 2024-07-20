@@ -215,9 +215,8 @@ else:
                       popup=folium.Popup(html=custom_popup), tooltip="Départ hors de paris", icon=folium.Icon(color='red')).add_to(m)
         place_holder_map.empty()
         with place_holder_map.container():
-            st_data = st_folium(m, height=400, width=725)  # bug du marker bleu            
+            st_data = st_folium(m, height=400, width=725)
             ctrl_click_map(st_data)
-            # folium_static(m, height=400, width=725)
             
     # Dans Paris
     else: 
