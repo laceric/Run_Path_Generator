@@ -159,9 +159,36 @@ if st.session_state['init']:
     st.session_state['init'] = False
 
 # Bouton de réinitialisation
-restart = st.button("Restart")
+# restart = st.button("Restart")
 
-if restart:
+# if restart:
+#     # réinitialisation des données
+#     st.session_state['dist'] = 10000
+#     st.session_state['location'] = CENTER_START
+#     st.session_state['zoom'] = ZOOM_START
+#     st.session_state['last_clicked'] = [None, None]
+#     st.session_state['route'] = False
+#     st.session_state['dist_route'] = False
+
+# Ajouter un gros bouton "Restart" en rouge
+st.markdown(
+    """
+    <style>
+    .restart-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    </style>
+    """
+)
+
+if st.button("Restart", key="restart_button", help="Cliquez ici pour redémarrer", class="restart-button"):
     # réinitialisation des données
     st.session_state['dist'] = 10000
     st.session_state['location'] = CENTER_START
@@ -169,7 +196,6 @@ if restart:
     st.session_state['last_clicked'] = [None, None]
     st.session_state['route'] = False
     st.session_state['dist_route'] = False
-
 
 # Création de l'emplacement du message d'erreur
 place_holder_err = st.empty()
