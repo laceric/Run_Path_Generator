@@ -58,7 +58,7 @@ if 'button_clicked' not in st.session_state:
 
 if st.experimental_get_query_params().get('msg') == ['custom_button_clicked']:
     st.session_state.button_clicked = True
-    st.experimental_set_query_params()  # Reset the query params
+    # st.experimental_set_query_params()  # Reset the query params
 
 # Afficher un message si le bouton personnalisé a été cliqué
 if st.session_state.button_clicked:
