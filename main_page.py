@@ -21,7 +21,7 @@ st.title("Running Path Generator")
 # show_map_ini()                                                            # Mis en commentaire => remplacer par Image_map.png
 
 # Afficher l'image sauvegardée dans Streamlit
-st.image("Image_map.png")
+st.image("Image_map.PNG")
 
 # Si click sur bouton demo alors on change de page
 if st.button("demo"):
