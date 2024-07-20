@@ -1,5 +1,6 @@
 import folium
 import streamlit as st
+from streamlit_extras.switch_page_button import switch_page
 import toml
 
 # # Charger les configurations de thème à partir du fichier config.toml
@@ -258,7 +259,7 @@ if st.session_state['Key_Menu'] == "Accueil":
         st.session_state['last_clicked'] = [None, None]
         st.session_state['route'] = False
         st.session_state['dist_route'] = False
-        
+        switch_page("demo")
         st.rerun()
             
 ###############################################################################################################
