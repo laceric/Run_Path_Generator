@@ -188,7 +188,7 @@ st.markdown(
     """
 )
 
-if st.button("Restart", key="restart_button", help="Cliquez ici pour redémarrer", class="restart-button"):
+if st.button("Restart", key="restart_button", help="Cliquez ici pour redémarrer"):
     # réinitialisation des données
     st.session_state['dist'] = 10000
     st.session_state['location'] = CENTER_START
