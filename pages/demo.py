@@ -45,7 +45,6 @@ def controle_in_paris(lat,lon):
     else:
         return False
 
-# def generation(df, lat, lon, distance):
 def generation(lat, lon, distance):
     # Chargement du dataframe
     zip_filename = "X_end.zip"
@@ -159,11 +158,6 @@ if st.session_state['init']:
     st.session_state['dist_route'] = False
     st.session_state['init'] = False
 
-# # Chargement du dataframe
-# zip_filename = "X_end.zip"
-# filepath_df = "X_end.csv"
-# df = load_dataframe(zip_filename, filepath_df)
-
 # Bouton de réinitialisation
 restart = st.button("Restart")
 
@@ -224,7 +218,7 @@ else:
             # st_data = st_folium(m, height=400, width=725)  # bug du marker bleu            
             # ctrl_click_map(st_data)
             folium_static(m, height=400, width=725)
-
+    # Dans Paris
     else: 
         folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], popup=folium.Popup(html=custom_popup), tooltip="Départ").add_to(m)          
         geolocator = Nominatim(user_agent="my_app")
@@ -239,7 +233,8 @@ else:
         st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Coordonnées du point de départ [lat, lon]:</p> {st.session_state['last_clicked']}", unsafe_allow_html=True)
         st.write("")
         st.write("")
-        
+
+        # Contrôle si itinéraire déjà récupérés
         if st.session_state['dist_route'] == False:
             st.session_state['dist_route'], st.session_state['route'] = generation(st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
 
