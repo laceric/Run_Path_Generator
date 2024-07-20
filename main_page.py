@@ -250,6 +250,15 @@ if st.session_state['Key_Menu'] == "Accueil":
 
     if st.button("Démo"):
         st.session_state['Key_Menu'] = 'Démo'
+        # réinitialisation des données
+        st.session_state['dist'] = 10000
+        st.session_state['Bouton_Generation'] = False
+        st.session_state['location'] = CENTER_START
+        st.session_state['zoom'] = ZOOM_START
+        st.session_state['last_clicked'] = [None, None]
+        st.session_state['route'] = False
+        st.session_state['dist_route'] = False
+        
         st.rerun()
             
 ###############################################################################################################
