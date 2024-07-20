@@ -19,18 +19,18 @@ import geopandas as gpd
 from shapely.geometry import Point
 
 
-@st.cache_data 
-def load_graph(zip_filename, filepath):
-    # Ouvrir le fichier zip et extraire le fichier GraphML temporairement
-    with zipfile.ZipFile(zip_filename, 'r') as zipf:
-        zipf.extract(filepath, path='.')
+# @st.cache_data 
+# def load_graph(zip_filename, filepath):
+#     # Ouvrir le fichier zip et extraire le fichier GraphML temporairement
+#     with zipfile.ZipFile(zip_filename, 'r') as zipf:
+#         zipf.extract(filepath, path='.')
 
-    # Charger le graphe avec osmnx
-    G = ox.load_graphml(filepath)
+#     # Charger le graphe avec osmnx
+#     G = ox.load_graphml(filepath)
 
-    # Supprimer le fichier temporaire
-    os.remove(filepath)
-    return G
+#     # Supprimer le fichier temporaire
+#     os.remove(filepath)
+#     return G
     # return ox.load_graphml(filepath)
 
 @st.cache_data 
@@ -62,7 +62,7 @@ def controle_in_paris(lat,lon):
         return False
 
 
-def generation(graph, df, lat, lon, distance):
+def generation(df, lat, lon, distance):
     # Calcul des distances et détermination du point le plus proche
     reference_point = (lat, lon)
     closest_point = None
@@ -171,9 +171,9 @@ if st.session_state['init']:
     st.session_state['init'] = False
 
 # Chargement du graph
-zip_filename = "Graphe_prepro_paris.zip"
-filepath_graph = "Graphe_prepro_paris.graphml"
-graph = load_graph(zip_filename, filepath_graph)
+# zip_filename = "Graphe_prepro_paris.zip"
+# filepath_graph = "Graphe_prepro_paris.graphml"
+# graph = load_graph(zip_filename, filepath_graph)
 
 # Chargement du dataframe
 zip_filename = "X_end.zip"
@@ -256,7 +256,7 @@ else:
         st.write("")
         st.write("")
 
-        st.session_state['dist_route'], st.session_state['route'] = generation(graph, df, st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
+        st.session_state['dist_route'], st.session_state['route'] = generation(df, st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
 
         col1dist, col2dist, _ = st.columns([4, 4, 1])   
         with col1dist:
