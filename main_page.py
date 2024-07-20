@@ -250,7 +250,7 @@ if st.session_state['Key_Menu'] == "Accueil":
 
     if st.button("Démo"):
         st.session_state['Key_Menu'] = 'Démo'
-        st.rerun
+        st.rerun()
             
 ###############################################################################################################
 
