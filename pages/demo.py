@@ -159,30 +159,9 @@ if st.session_state['init']:
     st.session_state['init'] = False
 
 # Bouton de réinitialisation
-# restart = st.button("Restart")
+restart = st.button("Restart")
 
-# if restart:
-#     # réinitialisation des données
-#     st.session_state['dist'] = 10000
-#     st.session_state['location'] = CENTER_START
-#     st.session_state['zoom'] = ZOOM_START
-#     st.session_state['last_clicked'] = [None, None]
-#     st.session_state['route'] = False
-#     st.session_state['dist_route'] = False
-
-# Ajouter un gros bouton "Restart" en rouge
-# Personnaliser un bouton avec du HTML dans st.markdown
-button_html = """
-    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none;
-                   border-radius: 5px; text-align: center; text-decoration: none;
-                   display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
-        Cliquez ici !
-    </button>
-"""
-
-if st.markdown(button_html, unsafe_allow_html=True):
-    st.write("Le bouton personnalisé a été cliqué !")
-    
+if restart:
     # réinitialisation des données
     st.session_state['dist'] = 10000
     st.session_state['location'] = CENTER_START
@@ -227,7 +206,7 @@ else:
         place_holder_err.empty()
         with place_holder_err.container():
             st.error('''
-                        Le point de départ n'est pas dans Paris.  
+                         ⚠️ Le point de départ n'est pas dans Paris.  
                         Cliquer sur le bouton Restart et cliquer dans Paris.
                         ''')
         # affichage de la carte
