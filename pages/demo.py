@@ -45,8 +45,13 @@ def controle_in_paris(lat,lon):
     else:
         return False
 
-
-def generation(df, lat, lon, distance):
+# def generation(df, lat, lon, distance):
+def generation(lat, lon, distance):
+    # Chargement du dataframe
+    zip_filename = "X_end.zip"
+    filepath_df = "X_end.csv"
+    df = load_dataframe(zip_filename, filepath_df)
+    
     # Calcul des distances et détermination du point le plus proche
     reference_point = (lat, lon)
     closest_point = None
@@ -154,10 +159,10 @@ if st.session_state['init']:
     st.session_state['dist_route'] = False
     st.session_state['init'] = False
 
-# Chargement du dataframe
-zip_filename = "X_end.zip"
-filepath_df = "X_end.csv"
-df = load_dataframe(zip_filename, filepath_df)
+# # Chargement du dataframe
+# zip_filename = "X_end.zip"
+# filepath_df = "X_end.csv"
+# df = load_dataframe(zip_filename, filepath_df)
 
 # Bouton de réinitialisation
 restart = st.button("Restart")
@@ -236,7 +241,7 @@ else:
         st.write("")
         
         if st.session_state['dist_route'] == False:
-            st.session_state['dist_route'], st.session_state['route'] = generation(df, st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
+            st.session_state['dist_route'], st.session_state['route'] = generation(st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
 
         col1dist, col2dist, _ = st.columns([4, 4, 1])   
         with col1dist:
