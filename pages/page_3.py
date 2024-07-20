@@ -1,74 +1,76 @@
 import streamlit as st
 
-# Initialiser st.session_state["init"] s'il n'existe pas
-if "click" not in st.session_state:
-    st.session_state['click'] = False
-
-# Fonction pour injecter du CSS et HTML pour le bouton personnalisé
-def custom_button():
-    button_style = """
-        <style>
-        .custom-button {
-            display: inline-block;
-            padding: 0.5em 1em;
-            font-size: 1em;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-        }
-        .custom-button:hover {
-            background-color: #45a049;
-        }
-        </style>
+# Ajouter du CSS pour styliser le bouton
+st.markdown(
     """
-    button_html = """
-        <a href="#" class="custom-button" id="custom-button">Custom Button</a>
+    <style>
+    .custom-button {
+        display: inline-block;
+        padding: 0.5em 1em;
+        font-size: 1em;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+    }
+    .custom-button:hover {
+        background-color: #45a049;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Créer le bouton personnalisé
+button_clicked = st.markdown(
     """
-    
-    # Injecter le CSS et HTML
-    st.markdown(button_style, unsafe_allow_html=True)
-    st.markdown(button_html, unsafe_allow_html=True)
+    <a href="javascript:void(0)" class="custom-button" id="custom-button">Custom Button</a>
+    """,
+    unsafe_allow_html=True
+)
 
-    # Détecter le clic du bouton
-    if st.session_state.get("button_clicked", False):
-        st.session_state.button_clicked = False
-        return True
-    else:
-        return False
-
-# Appeler la fonction pour afficher le bouton personnalisé
-button_clicked = custom_button()
-
-# Ajouter un script JavaScript pour détecter le clic et mettre à jour l'état de session
-st.markdown("""
+# Ajouter un script JavaScript pour gérer le clic du bouton
+st.markdown(
+    """
     <script>
-    document.getElementById("custom-button").onclick = function() {
-        // Utiliser la fonction Streamlit pour mettre à jour l'état de session
-        window.parent.postMessage({isStreamlit: true, data: {type: 'button_clicked'}}, '*');
-    };
+    const button = document.getElementById('custom-button');
+    button.addEventListener('click', function() {
+        // Utiliser Streamlit pour déclencher une interaction
+        window.parent.postMessage({isStreamlit: true, data: {type: 'customButtonClicked'}}, '*');
+    });
     </script>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
-# Ajouter un écouteur pour les messages
-st.markdown("""
+# Écouter les messages et mettre à jour l'état de session
+if 'button_clicked' not in st.session_state:
+    st.session_state.button_clicked = False
+
+st.markdown(
+    """
     <script>
     window.addEventListener("message", (event) => {
-        if (event.data && event.data.type === 'button_clicked') {
-            // Mettre à jour l'état de session pour indiquer que le bouton a été cliqué
-            window.parent.postMessage({isStreamlit: true, data: {type: 'update_session_state', state: {button_clicked: true}}}, '*');
+        if (event.data && event.data.type === 'customButtonClicked') {
+            // Mettre à jour l'état de session de Streamlit
+            const streamlitDoc = window.parent.document;
+            const streamlitInput = streamlitDoc.querySelectorAll('input[name="custom-button-clicked"]')[0];
+            streamlitInput.click();
         }
     });
     </script>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
-# Gérer l'événement côté Python
-st.markdown(f"position bouton save: {st.session_state['click']}")
+# Ajouter un champ d'entrée caché pour détecter le clic
+if st.button("hidden_button", key="custom-button-clicked"):
+    st.session_state.button_clicked = True
 
-if button_clicked:
-    st.session_state['click'] = True
+# Afficher un message si le bouton personnalisé a été cliqué
+if st.session_state.button_clicked:
     st.write("Bouton personnalisé cliqué !")
