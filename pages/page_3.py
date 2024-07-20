@@ -1,4 +1,4 @@
-import streamlit
+import streamlit as st
 
 # Utilisation de st.markdown pour intégrer du HTML et du CSS
 st.markdown(
