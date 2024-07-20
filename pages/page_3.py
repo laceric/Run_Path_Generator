@@ -1,5 +1,9 @@
 import streamlit as st
 
+# Initialiser st.session_state["init"] s'il n'existe pas
+if "click" not in st.session_state:
+    st.session_state['click'] = False
+
 # Utilisation de st.markdown pour intégrer du HTML et du CSS
 st.markdown(
     """
@@ -59,6 +63,9 @@ st.markdown(
 )
 
 # Gérer l'événement côté Python
+st.markdown(f"position bouton save: {st.session_state['click']}")
+
 custom_button_clicked = st.experimental_get_query_params().get("customButtonClicked", False)
 if custom_button_clicked:
+    st.session_state['click'] = True
     st.write("Bouton personnalisé cliqué !")
