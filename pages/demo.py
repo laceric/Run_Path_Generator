@@ -1,6 +1,5 @@
 import streamlit as st
 from geopy.geocoders import Nominatim
-# from folium.plugins import Realtime
 
 import folium
 from streamlit_folium import st_folium, folium_static
@@ -17,21 +16,6 @@ import gpxpy.gpx
 
 import geopandas as gpd
 from shapely.geometry import Point
-
-
-# @st.cache_data 
-# def load_graph(zip_filename, filepath):
-#     # Ouvrir le fichier zip et extraire le fichier GraphML temporairement
-#     with zipfile.ZipFile(zip_filename, 'r') as zipf:
-#         zipf.extract(filepath, path='.')
-
-#     # Charger le graphe avec osmnx
-#     G = ox.load_graphml(filepath)
-
-#     # Supprimer le fichier temporaire
-#     os.remove(filepath)
-#     return G
-    # return ox.load_graphml(filepath)
 
 @st.cache_data 
 def load_dataframe(zip_filename, filepath):
@@ -169,11 +153,6 @@ if st.session_state['init']:
     st.session_state['route'] = False
     st.session_state['dist_route'] = False
     st.session_state['init'] = False
-
-# Chargement du graph
-# zip_filename = "Graphe_prepro_paris.zip"
-# filepath_graph = "Graphe_prepro_paris.graphml"
-# graph = load_graph(zip_filename, filepath_graph)
 
 # Chargement du dataframe
 zip_filename = "X_end.zip"
