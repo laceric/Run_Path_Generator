@@ -1,4 +1,11 @@
 import streamlit as st
+from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.switch_page_button import switch_page
+from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.add_vertical_space import add_vertical_space
+
+from css_code.css_demo import *
+
 from geopy.geocoders import Nominatim
 
 import folium
@@ -16,6 +23,24 @@ import gpxpy.gpx
 
 import geopandas as gpd
 from shapely.geometry import Point
+
+st.set_page_config(
+    page_title="10K in Paris - Démo",
+    page_icon="🏃‍♂️",
+    initial_sidebar_state="expanded",
+)
+
+# Définition du style de la sidebar
+st.markdown(css_sidebar, unsafe_allow_html=True)
+
+
+show_loading_gif()
+
+
+###############################################################################################################
+
+###############################################################################################################
+# Définition des fonctions
 
 @st.cache_data 
 def load_dataframe(zip_filename, filepath):
@@ -45,12 +70,13 @@ def controle_in_paris(lat,lon):
     else:
         return False
 
+
 def generation(lat, lon, distance):
     # Chargement du dataframe
-    zip_filename = "X_end.zip"
+    zip_filename = "x_end.zip"
     filepath_df = "X_end.csv"
     df = load_dataframe(zip_filename, filepath_df)
-    
+
     # Calcul des distances et détermination du point le plus proche
     reference_point = (lat, lon)
     closest_point = None
@@ -92,11 +118,12 @@ def trace_gpx(route):
 def download_gpx_file(gpx_data, file_name):
     gpx_str = gpx_data.to_xml()
     gpx_bytes = gpx_str.encode()
-
-    
-    st.write("")
-    st.write("")
-    st.download_button(label="Télécharger GPX", data=gpx_bytes, file_name=file_name, mime="application/gpx+xml")
+#146EC2, #A9C7E3
+    with stylable_container(
+            key="Bouton_GPX",
+            css_styles = css_styles_GPX 
+        ):
+        st.download_button(label="Télécharger GPX", data=gpx_bytes, file_name=file_name, mime="application/gpx+xml")
 
 
 def ctrl_click_map(st_data):
@@ -110,6 +137,33 @@ def ctrl_click_map(st_data):
                                         ]
         st.session_state['zoom'] = st_data['zoom']
 
+def bouton_restart():
+    
+    # blue => #146EC2, #A9C7E3
+    with stylable_container(
+            key="Bouton_RESTART",
+            css_styles = css_styles_restart  
+        ):
+        if st.button("Restart"):
+            # réinitialisation des données
+            st.session_state['dist'] = 10000
+            st.session_state['location'] = CENTER_START
+            st.session_state['zoom'] = ZOOM_START
+            st.session_state['last_clicked'] = [None, None]
+            st.session_state['route'] = False
+            st.session_state['dist_route'] = False
+            st.rerun()
+
+def bouton_methode():
+    _, methode, _ = st.columns([1, 2, 1])
+
+    with methode:
+        with stylable_container(
+                key="Bouton_METHODE",
+                css_styles = css_styles_methode  
+            ):
+            if st.button("Méthode ➡"):
+                switch_page("méthode")
 ###############################################################################################################
 
 ###############################################################################################################
@@ -117,9 +171,9 @@ def ctrl_click_map(st_data):
 CENTER_START = [48.854602840174394, 2.3476877892670753]
 ZOOM_START = 12
 
-# Initialiser st.session_state["init"] s'il n'existe pas
-if "init" not in st.session_state:
-    st.session_state['init'] = True
+# Initialiser st.session_state["methode"] s'il n'existe pas
+if "methode" not in st.session_state:
+    st.session_state['methode'] = False
     
 # Initialiser st.session_state["dist"] s'il n'existe pas
 if "dist" not in st.session_state:
@@ -143,53 +197,57 @@ if "zoom" not in st.session_state:
 
 # Initialiser st.session_state["last_clicked"] s'il n'existe pas
 if "last_clicked" not in st.session_state:
-    st.session_state['last_clicked'] = None
+    st.session_state['last_clicked'] = [None, None]
 
 ###############################################################################################################
 
 ###############################################################################################################
-# réinitialisation des données
-if st.session_state['init']:
-    st.session_state['dist'] = 10000
-    st.session_state['location'] = CENTER_START
-    st.session_state['zoom'] = ZOOM_START
-    st.session_state['last_clicked'] = [None, None]
-    st.session_state['route'] = False
-    st.session_state['dist_route'] = False
-    st.session_state['init'] = False
 
-# Bouton de réinitialisation
-restart = st.button("Restart")
-
-if restart:
-    # réinitialisation des données
-    st.session_state['dist'] = 10000
-    st.session_state['location'] = CENTER_START
-    st.session_state['zoom'] = ZOOM_START
-    st.session_state['last_clicked'] = [None, None]
-    st.session_state['route'] = False
-    st.session_state['dist_route'] = False
-
-# Création de l'emplacement du message d'erreur
-place_holder_err = st.empty()
+# Création de l'emplacement du message
+place_holder_message = st.empty()
 
 # Création de l'emplacement de la carte
 place_holder_map = st.empty()
 
+# Création de l'emplacement des résultats
+place_holder_res = st.empty()
+
+# Création de l'emplacement des boutons liés à la démo (restart et gpx)
+place_holder_boutton_demo = st.empty()
+
 # Initialisation (pas de last_clicked save)
 if st.session_state['last_clicked'][0] == None:
-    st.markdown("Cliquer sur la carte pour placer le marker de départ")
     # Création de la carte    
     m = folium.Map(location=st.session_state['location'], 
-                zoom_start=st.session_state['zoom'])
+                   zoom_start=st.session_state['zoom'])
+    
+    hide_loading_gif()
 
+    with place_holder_message:
+            colrestart, colimg, colmesg = st.columns([2,1,7])
+            with colrestart:
+                bouton_restart()
+
+            # with colimg:                                                              # Affichage du petit logo ou pas
+            #     st.image("petit_logo.jpg")
+
+            with colmesg:
+                st.info("""
+                            Cliquer sur la carte pour définir votre point de départ !
+                        """)
+                # Style css de st.info
+                st.markdown(css_box_info, unsafe_allow_html=True)
+    
     # affichage de la carte
-    place_holder_map.empty()
-    with place_holder_map.container():
+    with place_holder_map:
         st_data = st_folium(m, height=400, width=725)
+
     if st_data['last_clicked'] != None:
         ctrl_click_map(st_data)
         st.rerun()
+
+    if st.session_state['methode']:
+        bouton_methode()
 
 # Coordonnées déjà récupérées    
 else:
@@ -200,54 +258,91 @@ else:
     
     # Contrôle coordonnées si bien dans paris
     in_paris = controle_in_paris(st.session_state['last_clicked'][0],st.session_state['last_clicked'][1])
-
+    
     if not in_paris:
-        # Affichage de l'erreur
-        place_holder_err.empty()
-        with place_holder_err.container():
-            st.error('''
-                         ⚠️ Le point de départ n'est pas dans Paris.  
-                        Cliquer sur le bouton Restart et cliquer dans Paris.
-                        ''')
         # affichage de la carte
         folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], 
                       popup=folium.Popup(html=custom_popup), tooltip="Départ hors de paris", icon=folium.Icon(color='red')).add_to(m)
-        place_holder_map.empty()
-        with place_holder_map.container():
-            st_data = st_folium(m, height=400, width=725)
-            ctrl_click_map(st_data)
+        
+        hide_loading_gif()
+        # Affichage de l'erreur
+        with place_holder_message:
+            colrestart, colimg, colmesg = st.columns([2,1,7])
+            with colrestart:
+                bouton_restart()
+
+            # with colimg:                                                              # Affichage du petit logo ou pas
+            #     st.image("petit_logo.jpg")
+
+            with colmesg:
+                st.error('''
+                            Le point de départ n'est pas dans Paris.  
+                            Cliquer sur la carte dans Paris.
+                           ''')
+                # Style css de st.error
+                st.markdown(css_box_error, unsafe_allow_html=True)
             
-    # Dans Paris
+        with place_holder_map.container():
+            st_data = st_folium(m, height=400, width=725)  # bug du marker bleu            
+            ctrl_click_map(st_data)
+
+        if st.session_state['methode']:
+            bouton_methode()
+    
     else: 
+        # Loading GIF durant les calculs
+        # show_loading_gif()
+
+        # Ajout marker et récupération adresse
         folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], popup=folium.Popup(html=custom_popup), tooltip="Départ").add_to(m)          
         geolocator = Nominatim(user_agent="my_app")
         location = geolocator.reverse((st.session_state['last_clicked'][0], st.session_state['last_clicked'][1]), exactly_one=True)
         
-        # Afficher l'adresse obtenue
-        if location:
-            st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Adresse du point de départ :</p> {location}", unsafe_allow_html=True)
-            st.write("")
-            st.write("")
-            
-        st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Coordonnées du point de départ [lat, lon]:</p> {st.session_state['last_clicked']}", unsafe_allow_html=True)
-        st.write("")
-        st.write("")
-
-        # Contrôle si itinéraire déjà récupérés
-        if st.session_state['dist_route'] == False:
-            st.session_state['dist_route'], st.session_state['route'] = generation(st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
-
-        col1dist, col2dist, _ = st.columns([4, 4, 1])   
-        with col1dist:
-            st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Distance visée:</p> {st.session_state['dist']}", unsafe_allow_html=True)
-        with col2dist:
-            st.markdown(f"<p style='color: blue; font-size: 20px; font-weight: bold; text-decoration: underline;'>Distance du parcours généré:</p> {st.session_state['dist_route']}m.", unsafe_allow_html=True)
+        # Récupération de la route et sa distance
+        st.session_state['dist_route'], st.session_state['route'] = generation(st.session_state['last_clicked'][0], st.session_state['last_clicked'][1], st.session_state['dist'])
 
         # Tracez le trajet GPX sur la carte
         folium.plugins.AntPath(locations=st.session_state['route'], weight=6, color='blue').add_to(m)
+
+        hide_loading_gif()
+
+        with place_holder_message:
+            colrestart, colimg, colmesg = st.columns([2,1,7])           
+            with colrestart:
+                bouton_restart()
+
+            with colimg:
+                st.image("petit_logo.jpg")
+
+            with colmesg:
+                st.info('''
+                            Félicitation !!  
+                            Voici votre itinéraire !
+                        ''')
+                # Style css de st.info
+                st.markdown(css_box_info, unsafe_allow_html=True)
+
+        # Affichage des résultats
+        with place_holder_res:
+            colres1, colres2, colres3 = st.columns(3)
+            with colres1:
+                st.metric(label="Distance visée", value=f"{st.session_state['dist']} m")
+
+            with colres2:
+                st.metric(label="Distance du parcours généré", value=f"{st.session_state['dist_route']} m")
+
+            with colres3:
+                trace_gpx(st.session_state['route'])
+
+            
+        # Précise le style des emplacements "metric"
+        style_metric_cards(border_left_color=None)
+        st.markdown(css_metrics_card_param, unsafe_allow_html=True)
+
         # affichage de la carte
         with place_holder_map.container():
-            folium_static(m, height=400, width=725)
+                folium_static(m, height=400, width=725)
 
-        trace_gpx(st.session_state['route'])
-            
+        st.session_state['methode'] = True
+        bouton_methode()
+
