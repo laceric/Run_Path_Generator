@@ -106,8 +106,8 @@ with tab3:
                     La création du premier jeux de données s'appuye sur le découpage de Paris en zone.  
                     Une répartition uniforme des valeurs des différents paramètres de l'algorithme a été faite pour éviter d'avoir un biais au départ.
                 """)
-    
-    st.image("Images\methode\paris_jdd_decoupe.png")
+
+    lecture_image(["Images", "methode", "paris_jdd_decoupe.png"])
 
     st.markdown(css_sous_titre_start +
                 """
