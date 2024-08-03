@@ -19,7 +19,7 @@ st.title("Run Path Generator 10K in Paris!")
 st.write(css_orange_sep, unsafe_allow_html=True)
 
 
-
+import os
 # Définir le chemin relatif vers l'image
 image_path = os.path.join('Images', 'Home', 'couple_runners.jpg')
 
