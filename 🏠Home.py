@@ -18,7 +18,7 @@ st.markdown(css_sidebar, unsafe_allow_html=True)
 st.title("Run Path Generator 10K in Paris!")
 st.write(css_orange_sep, unsafe_allow_html=True)
 
-st.image("couple runners.jpg")
+st.image("Images\home\couple runners.jpg")
 
 st.write("""
             **Le principe est simple...**  
