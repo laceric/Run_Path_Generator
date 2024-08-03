@@ -27,6 +27,7 @@ image_path = os.path.join('Images', 'home', 'couple_runners.jpg')
 
 # Vérifier que le fichier existe avant d'essayer de le charger
 if os.path.exists(image_path):
+    st.markdown(image_path)
     st.image(image_path)
 else:
     st.error(f"Le fichier '{image_path}' n'existe pas.")
