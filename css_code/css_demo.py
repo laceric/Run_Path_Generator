@@ -148,7 +148,7 @@ css_metrics_card_param = '''
                     '''
 #############################################################################################################    FONCTIONS
 def show_loading_gif():
-    image_path = os.path.join("..", "running_man.gif")
+    image_path = os.path.join("running_man.gif")
 
     # Vérifier que le fichier existe avant d'essayer de le charger
     if os.path.exists(image_path):
