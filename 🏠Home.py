@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_extras.stylable_container import stylable_container
 from streamlit_extras.add_vertical_space import add_vertical_space
+import os
 
 from css_code.css_home import *
 
@@ -19,22 +20,14 @@ st.title("Run Path Generator 10K in Paris!")
 st.write(css_orange_sep, unsafe_allow_html=True)
 
 
-# Images/home/couple_runners.jpg
-
-import os
 # Définir le chemin relatif vers l'image
 image_path = os.path.join('Images', 'home', 'couple_runners.jpg')
 
 # Vérifier que le fichier existe avant d'essayer de le charger
 if os.path.exists(image_path):
-    st.markdown(image_path)
     st.image(image_path)
 else:
     st.error(f"Le fichier '{image_path}' n'existe pas.")
-
-
-
-st.image("Images\home\couple_runners.jpg")
 
 st.write("""
             **Le principe est simple...**  
