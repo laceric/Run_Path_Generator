@@ -73,7 +73,7 @@ def controle_in_paris(lat,lon):
 
 def generation(lat, lon, distance):
     # Chargement du dataframe
-    zip_filename = "x_end.zip"
+    zip_filename = "X_end.zip"
     filepath_df = "X_end.csv"
     df = load_dataframe(zip_filename, filepath_df)
 
