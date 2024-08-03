@@ -152,43 +152,44 @@ def show_loading_gif():
 
     # Vérifier que le fichier existe avant d'essayer de le charger
     if os.path.exists(image_path):
-        st.markdown(image_path)
+        # HTML pour afficher le GIF
+        st.markdown(
+            f"""
+            <div id="loader">
+                <img src="data:image/gif;base64,{st.image(image_path, width=200).image_data}"/>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        # CSS pour ajustement de la box du gif
+        st.markdown(
+            f"""
+                <style>
+                [data-testid="stImage"]{{
+                margin-left: 220px;
+                margin-top: 180px;
+                }}
+            """,
+            unsafe_allow_html=True
+        )
+    
+        # Masquer le GIF loader après la fin de la tâche
+        st.markdown(
+            """
+            <style>
+            #loader {
+                display: none;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+      
     else:
         st.error(f"Le fichier '{image_path}' n'existe pas.")
   
-    # HTML pour afficher le GIF
-    st.markdown(
-        f"""
-        <div id="loader">
-            <img src="data:image/gif;base64,{st.image(image_path, width=200).image_data}"/>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # CSS pour ajustement de la box du gif
-    st.markdown(
-        f"""
-            <style>
-            [data-testid="stImage"]{{
-            margin-left: 220px;
-            margin-top: 180px;
-            }}
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Masquer le GIF loader après la fin de la tâche
-    st.markdown(
-        """
-        <style>
-        #loader {
-            display: none;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    
 
 def hide_loading_gif():
     # Hide the GIF loader after the task is completed
