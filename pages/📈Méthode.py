@@ -24,7 +24,7 @@ with tab1:
     add_vertical_space(2)
     col1, col2 = st.columns([2,5])
     with col1:
-        st.image("Methode_animation.gif")
+        st.image("Images\methode\Methode_animation.gif")
     with col2:
         st.markdown("""
                         La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètre d'un algorithme qui génère un itinéraire.
@@ -40,7 +40,7 @@ with tab1:
 with tab2:
     col1, col2 = st.columns([1,5])
     with col1:
-        st.image("map_animation.gif")
+        st.image("Images\methode\map_animation.gif")
     with col2:
         add_vertical_space(2)
         st.markdown("""
@@ -58,12 +58,12 @@ with tab2:
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
     with col2:
-        st.image("algo_paris_1.png")
+        st.image("Images\methode\\algo_paris_1.png")
 
     add_vertical_space(2)
     col1, col2 = st.columns([5,5])
     with col1:
-        st.image("algo_paris_2.png")
+        st.image("Images\methode\\algo_paris_2.png")
     with col2:
         st.markdown("""
                         2) Ensuite on définit un certain nombre de points de passage à cette même distance R du point centrale selon différents angles. 
@@ -81,7 +81,7 @@ with tab2:
                         3) Enfin on relies les points de passage via un algorithme de pathfinding.  
                     """)
     with col2:
-        st.image("algo_paris_3.png")
+        st.image("Images\methode\\algo_paris_3.png")
 
 
 
@@ -95,7 +95,7 @@ with tab3:
                     Une répartition uniforme des valeurs des différents paramètres de l'algorithme a été faite pour éviter d'avoir un biais au départ.
                 """)
     
-    st.image("paris_jdd_decoupe.png")
+    st.image("Images\methode\paris_jdd_decoupe.png")
 
     st.markdown(css_sous_titre_start +
                 """
@@ -124,7 +124,7 @@ with tab4:
                     """)
     
     add_vertical_space(3)
-    st.image("cible_avant.jpg")
+    st.image("Images\methode\cible_avant.jpg")
 
     _, col2= st.columns([1,5])
     with col2:
@@ -170,9 +170,9 @@ with tab5:
         add_vertical_space(2)
         col1c, _ = st.columns([6,2])
         with col1c:
-            st.image("cible_avant.jpg")
+            st.image("Images\methode\cible_avant.jpg")
         add_vertical_space(2)
-        st.image("image_res_avant_opti.jpg")
+        st.image("Images\methode\image_res_avant_opti.jpg")
         st.markdown(css_sous_titre_start +
                     """
                     Avant optimisation : jeux de données de 1180 lignes.
@@ -188,26 +188,11 @@ with tab5:
         add_vertical_space(2)
         col2c, _ = st.columns([5,2])
         with col2c:
-            st.image("cible_apres.jpg")
+            st.image("Images\methode\cible_apres.jpg")
         add_vertical_space(2)
-        st.image("image_res_apres_opti.jpg")
+        st.image("Images\methode\image_res_apres_opti.jpg")
         st.markdown(css_sous_titre_start +
                     """
                     Après optimisation : jeux de données de 15844 lignes.
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
-
-
-#####################################################################################################
-# Au finale !
-#####################################################################################################
-
-# with tab6:
-#     st.markdown("""
-#             Finalement ce projet combine mon intérêt pour les sciences et la data à une passion le sport.  
-#             Ce qui le caractérise c'est :  
-#             - Une solution basée sur l'absence de jeux de données utilisateurs (à la différence de ce qu'on voit sur le marché).
-#             - L'utilisation de données structurelles openstream spécifiques aux questions géodata (OpenStreeMap).
-#             - L'utilisation de méthode de réseaux (Graphes) et de modèles de machine learning.
-#             - Un travail de bout en bout allant de la donnée à la prédiction jusqu'à la présentation.
-#             """)
