@@ -224,12 +224,9 @@ if st.session_state['last_clicked'][0] == None:
     hide_loading_gif()
 
     with place_holder_message:
-            colrestart, colimg, colmesg = st.columns([2,1,7])
+            colrestart, colmesg = st.columns([3,7])
             with colrestart:
                 bouton_restart()
-
-            # with colimg:                                                              # Affichage du petit logo ou pas
-            #     st.image("petit_logo.jpg")
 
             with colmesg:
                 st.info("""
@@ -267,32 +264,26 @@ else:
         hide_loading_gif()
         # Affichage de l'erreur
         with place_holder_message:
-            colrestart, colimg, colmesg = st.columns([2,1,7])
+            colrestart, colmesg = st.columns([3,7])
             with colrestart:
                 bouton_restart()
-
-            # with colimg:                                                              # Affichage du petit logo ou pas
-            #     st.image("petit_logo.jpg")
 
             with colmesg:
                 st.error('''
                             Le point de départ n'est pas dans Paris.  
-                            Cliquer sur la carte dans Paris.
+                            Cliquer sur le bouton Restart puis cliquer sur la carte dans Paris.
                            ''')
                 # Style css de st.error
                 st.markdown(css_box_error, unsafe_allow_html=True)
             
         with place_holder_map.container():
-            st_data = st_folium(m, height=400, width=725)  # bug du marker bleu            
+            st_data = st_folium(m, height=400, width=725)         
             ctrl_click_map(st_data)
 
         if st.session_state['methode']:
             bouton_methode()
     
     else: 
-        # Loading GIF durant les calculs
-        # show_loading_gif()
-
         # Ajout marker et récupération adresse
         folium.Marker([st.session_state['last_clicked'][0],st.session_state['last_clicked'][1]], popup=folium.Popup(html=custom_popup), tooltip="Départ").add_to(m)          
         geolocator = Nominatim(user_agent="my_app")
@@ -307,12 +298,9 @@ else:
         hide_loading_gif()
 
         with place_holder_message:
-            colrestart, colimg, colmesg = st.columns([2,1,7])           
+            colrestart, colmesg = st.columns([3,7])           
             with colrestart:
                 bouton_restart()
-
-            with colimg:
-                st.image("petit_logo.jpg")
 
             with colmesg:
                 st.info('''
@@ -345,4 +333,3 @@ else:
 
         st.session_state['methode'] = True
         bouton_methode()
-
