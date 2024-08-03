@@ -35,7 +35,7 @@ with tab1:
     add_vertical_space(2)
     col1, col2 = st.columns([2,5])
     with col1:
-        lecture_image([Images, methode, Methode_animation.gif]) #("Images\methode\Methode_animation.gif")
+        lecture_image(["Images", "methode", "Methode_animation.gif"]) #("Images\methode\Methode_animation.gif")
         # st.image("Images\methode\Methode_animation.gif")
     with col2:
         st.markdown("""
