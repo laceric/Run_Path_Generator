@@ -12,9 +12,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-def lecture_image(chemins): #('Images', 'home', 'couple_runners.jpg')
+def lecture_image(chemins):
     # Définir le chemin relatif vers l'image
-    # image_path = os.path.join('Images', 'home', 'couple_runners.jpg')
     image_path = os.path.join(chemins[0], chemins[1], chemins[2])
     
     # Vérifier que le fichier existe avant d'essayer de le charger
@@ -36,8 +35,8 @@ with tab1:
     add_vertical_space(2)
     col1, col2 = st.columns([2,5])
     with col1:
-        lecture_image(["Images", "methode", "Methode_animation.gif"]) #("Images\methode\Methode_animation.gif")
-        # st.image("Images\methode\Methode_animation.gif")
+        lecture_image(["Images", "methode", "Methode_animation.gif"])
+        
     with col2:
         st.markdown("""
                         La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètre d'un algorithme qui génère un itinéraire.
@@ -53,7 +52,7 @@ with tab1:
 with tab2:
     col1, col2 = st.columns([1,5])
     with col1:
-        st.image("Images\methode\map_animation.gif")
+        lecture_image(["Images", "methode", "map_animation.gif"])
     with col2:
         add_vertical_space(2)
         st.markdown("""
@@ -71,12 +70,12 @@ with tab2:
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
     with col2:
-        st.image("Images\methode\\algo_paris_1.png")
+        lecture_image(["Images", "methode", "algo_paris_1.png"])
 
     add_vertical_space(2)
     col1, col2 = st.columns([5,5])
     with col1:
-        st.image("Images\methode\\algo_paris_2.png")
+        lecture_image(["Images", "methode", "algo_paris_2.png"])
     with col2:
         st.markdown("""
                         2) Ensuite on définit un certain nombre de points de passage à cette même distance R du point centrale selon différents angles. 
@@ -94,7 +93,7 @@ with tab2:
                         3) Enfin on relies les points de passage via un algorithme de pathfinding.  
                     """)
     with col2:
-        st.image("Images\methode\\algo_paris_3.png")
+        lecture_image(["Images", "methode", "algo_paris_3.png"])
 
 
 
@@ -137,7 +136,7 @@ with tab4:
                     """)
     
     add_vertical_space(3)
-    st.image("Images\methode\cible_avant.jpg")
+    lecture_image(["Images", "methode", "cible_avant.jpg"])
 
     _, col2= st.columns([1,5])
     with col2:
@@ -183,9 +182,9 @@ with tab5:
         add_vertical_space(2)
         col1c, _ = st.columns([6,2])
         with col1c:
-            st.image("Images\methode\cible_avant.jpg")
+            lecture_image(["Images", "methode", "cible_avant.jpg"])
         add_vertical_space(2)
-        st.image("Images\methode\image_res_avant_opti.jpg")
+        lecture_image(["Images", "methode", "image_res_avant_opti.jpg"])
         st.markdown(css_sous_titre_start +
                     """
                     Avant optimisation : jeux de données de 1180 lignes.
@@ -201,9 +200,9 @@ with tab5:
         add_vertical_space(2)
         col2c, _ = st.columns([5,2])
         with col2c:
-            st.image("Images\methode\cible_apres.jpg")
+            lecture_image(["Images", "methode", "cible_apres.jpg"])
         add_vertical_space(2)
-        st.image("Images\methode\image_res_apres_opti.jpg")
+        lecture_image(["Images", "methode", "image_res_apres_opti.jpg"])
         st.markdown(css_sous_titre_start +
                     """
                     Après optimisation : jeux de données de 15844 lignes.
