@@ -11,6 +11,17 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+def lecture_image(chemins): #('Images', 'home', 'couple_runners.jpg')
+    # Définir le chemin relatif vers l'image
+    # image_path = os.path.join('Images', 'home', 'couple_runners.jpg')
+    image_path = os.path.join(chemins[0], chemins[1], chemins[2])
+    
+    # Vérifier que le fichier existe avant d'essayer de le charger
+    if os.path.exists(image_path):
+        st.image(image_path)
+    else:
+        st.error(f"Le fichier '{image_path}' n'existe pas.")
+
 # Définition du style de la sidebar
 st.markdown(css_sidebar, unsafe_allow_html=True)
 
@@ -24,7 +35,8 @@ with tab1:
     add_vertical_space(2)
     col1, col2 = st.columns([2,5])
     with col1:
-        st.image("Images\methode\Methode_animation.gif")
+        lecture_image([Images, methode, Methode_animation.gif]): #("Images\methode\Methode_animation.gif")
+        # st.image("Images\methode\Methode_animation.gif")
     with col2:
         st.markdown("""
                         La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètre d'un algorithme qui génère un itinéraire.
