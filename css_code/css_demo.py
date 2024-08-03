@@ -147,11 +147,19 @@ css_metrics_card_param = '''
                     '''
 #############################################################################################################    FONCTIONS
 def show_loading_gif():
+    image_path = os.path.join("running_man.gif")
+
+    # Vérifier que le fichier existe avant d'essayer de le charger
+    if os.path.exists(image_path):
+        st.markdown(image_path)
+    else:
+        st.error(f"Le fichier '{image_path}' n'existe pas.")
+  
     # HTML pour afficher le GIF
     st.markdown(
         f"""
         <div id="loader">
-            <img src="data:image/gif;base64,{st.image("running_man.gif", width=200).image_data}"/>
+            <img src="data:image/gif;base64,{st.image(image_path, width=200).image_data}"/>
         </div>
         """,
         unsafe_allow_html=True
