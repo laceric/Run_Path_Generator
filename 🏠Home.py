@@ -18,7 +18,20 @@ st.markdown(css_sidebar, unsafe_allow_html=True)
 st.title("Run Path Generator 10K in Paris!")
 st.write(css_orange_sep, unsafe_allow_html=True)
 
-st.image("Images\home\couple runners.jpg")
+
+
+# Définir le chemin relatif vers l'image
+image_path = os.path.join('Images', 'Home', 'couple_runners.jpg')
+
+# Vérifier que le fichier existe avant d'essayer de le charger
+if os.path.exists(image_path):
+    st.image(image_path)
+else:
+    st.error(f"Le fichier '{image_path}' n'existe pas.")
+
+
+
+st.image("Images\home\couple_runners.jpg")
 
 st.write("""
             **Le principe est simple...**  
