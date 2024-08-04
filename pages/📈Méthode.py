@@ -138,20 +138,6 @@ with tab4:
     add_vertical_space(3)
     lecture_image(["Images", "methode", "cible_avant.jpg"])
 
-    _, col2= st.columns([1,5])
-    with col2:
-        st.markdown(css_sous_titre_start +
-                    """
-                    Les lignes rouges représentent les bornes cibles pour l'écart (entre 0 et +300 mètres).
-                    """
-                    + css_sous_titre_end, unsafe_allow_html=True)
-        st.markdown(css_sous_titre_start +
-                    """
-                    Les autres lignes représentent les quantiles des écarts (légende dans le tableau à droite).
-                    """
-                    + css_sous_titre_end, unsafe_allow_html=True)
-
-
 #####################################################################################################
 # Optimisation des résultats
 #####################################################################################################
