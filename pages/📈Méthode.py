@@ -25,7 +25,7 @@ def lecture_image(chemins):
 # Définition du style de la sidebar
 st.markdown(css_sidebar, unsafe_allow_html=True)
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Introduction", "L'algorithme", "Le jeux de données", "Les modèles de Machine Learning", "Optimisation des résultats"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Méthode !", "L'algorithme", "Le jeux de données", "Les modèles de Machine Learning", "Optimisation des résultats"])
 
 #####################################################################################################
 # Introduction
@@ -39,10 +39,10 @@ with tab1:
         
     with col2:
         st.markdown("""
-                        La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètre d'un algorithme qui génère un itinéraire.
+                        La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètres d'un algorithme qui génère un itinéraire.
                                 
-                        Pour cela J'ai du coder un algorithme, créer des jeux de données, entraîner des modèles de prédictions.
-                        Et enfin optimiser ces prédictions à travers l'analyse et des méthodes d'optimisations.
+                        Pour cela J'ai dù coder un algorithme, créer des jeux de données, entraîner des modèles de prédictions.
+                        Et enfin optimiser ces prédictions à travers l'analyse et des méthodes d'optimisation.
                     """)
 
 #####################################################################################################
@@ -56,17 +56,17 @@ with tab2:
     with col2:
         add_vertical_space(2)
         st.markdown("""
-                        Le principe de base de l'algorithme pour générer un itinéraire est la création de points de passages.
+                        Le principe de base de l'algorithme pour générer un itinéraire est la création de points de passage.
                     """)
     
     col1, col2 = st.columns([5,5])
     with col1:
         st.markdown("""
-                        1) On définit un point centrale qui se trouve entre le point de départ le centre de Paris et à une certaine distance (topographique) R du point de départ.
+                        1) On définit un point central qui se trouve entre le point de départ le centre de Paris et à une certaine distance (topographique) R du point de départ.
                     """)
         st.markdown(css_sous_titre_start +
                     """
-                        (Dans l'ordre de gauche à droite : Point de Départ, Point Centrale, Centre de Paris)
+                        (Dans l'ordre de gauche à droite : Point de Départ, Point Central, Centre de Paris)
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
     with col2:
@@ -82,7 +82,7 @@ with tab2:
                     """)
         st.markdown(css_sous_titre_start +
                     """
-                        (Point de Départ: Jaune, Point Centrale: Rouge, Points de Passage: Blanc)
+                        (Point de Départ: Jaune, Point Central: Rouge, Points de Passage: Blanc)
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
 
@@ -90,7 +90,7 @@ with tab2:
     col1, col2 = st.columns([3,5])
     with col1:
         st.markdown("""
-                        3) Enfin on relies les points de passage via un algorithme de pathfinding.  
+                        3) Enfin on relie les points de passage via un algorithme de pathfinding.  
                     """)
     with col2:
         lecture_image(["Images", "methode", "algo_paris_3.png"])
@@ -103,7 +103,7 @@ with tab2:
 
 with tab3:
     st.markdown("""
-                    La création du premier jeux de données s'appuye sur le découpage de Paris en zone.  
+                    La création du premier jeu de données s'appuie sur le découpage de Paris en zone.  
                     Une répartition uniforme des valeurs des différents paramètres de l'algorithme a été faite pour éviter d'avoir un biais au départ.
                 """)
 
@@ -111,7 +111,7 @@ with tab3:
 
     st.markdown(css_sous_titre_start +
                 """
-                    On supprime les zones qui n'ont pas de noeud (point) et on génères des échantillons dans les autres de sorte à couvrir uniformément la surface de Paris.
+                    On supprime les zones qui n'ont pas de noeud (point) et on génère des échantillons dans les autres de sorte à couvrir uniformément la surface de Paris.
                 """
                 + css_sous_titre_end, unsafe_allow_html=True)
 
@@ -125,14 +125,14 @@ with tab4:
     col1, col2 = st.columns([10,1])
     with col1:
         st.markdown("""
-                    On utilise des modèles de Regression pour optimiser les paramètres de sorte à optenir une distance proche des 10km.
+                    On utilise des modèles de Régression pour optimiser les paramètres de sorte à obtenir une distance proche des 10 km.
                     (RandomForestRegressor, DecisionTreeRegressor, GradientBoostingRegressor, GaussianProcessRegressor, KernelRidge, SVR)
                 """)
 
         add_vertical_space(2)
         st.markdown("""
-                        La comparaison de modèles avec afutage des hyper-paramètres a donné des résultats positif en particulier pour le modèle SVR.  
-                        Cependant l'écart entre la distance optenue et les 10km était souvent trop important.
+                        La comparaison de modèles avec affutage des hyperparamètres a donné des résultats positifs en particulier pour le modèle SVR.  
+                        Cependant l'écart entre la distance obtenue et les 10 km était souvent trop important.
                     """)
     
     add_vertical_space(3)
@@ -142,12 +142,12 @@ with tab4:
     with col2:
         st.markdown(css_sous_titre_start +
                     """
-                    Les lignes rouges représente les bornes cibles pour l'écart (entre 0 et +300 mètres).
+                    Les lignes rouges représentent les bornes cibles pour l'écart (entre 0 et +300 mètres).
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
         st.markdown(css_sous_titre_start +
                     """
-                    Les autres lignes représente les quantiles des écarts (légende dans le tableau à droite).
+                    Les autres lignes représentent les quantiles des écarts (légende dans le tableau à droite).
                     """
                     + css_sous_titre_end, unsafe_allow_html=True)
 
@@ -159,16 +159,16 @@ with tab4:
 with tab5:
     st.markdown("""
                     Afin d'améliorer les résultats je suis parti sur des méthodes d'optimisation.  
-                    J'ai créer un nouveau jeu de données qui reprend uniquement les noeuds du réseau.
-                    J'ai ensuite utiliser mon meilleur modèle de regression pour avoir des paramètres plus optimisés.
+                    J'ai créé un nouveau jeu de données qui reprend uniquement les noeuds du réseau.
+                    J'ai ensuite utilisé mon meilleur modèle de régression pour avoir des paramètres plus optimisés.
                     Puis j'ai utilisé deux méthodes.
 
                     1) La première méthode est l'optimisation pas à pas.  
-                    J'ai ainsi optenue pour chaque noeud la valeur du paramètres la plus optimale possible.
+                    J'ai ainsi obtenue pour chaque noeud la valeur du paramètre la plus optimale possible.
                 
                     2) La seconde méthode est l'optimisation par le meilleur voisin.
-                    J'ai cherché le voisin qui donné le meilleur résultat en cumulant son parcours avec la distance du noeud initiale.
-                    Cette dernière a véritablement permise de compenser une partie des défauts de l'algorithme de départ.
+                    J'ai cherché le voisin qui donne le meilleur résultat en cumulant son parcours avec la distance du noeud initial.
+                    Cette dernière a véritablement permis de compenser une partie des défauts de l'algorithme de départ.
                 """)
 
     add_vertical_space(3)
