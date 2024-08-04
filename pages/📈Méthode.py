@@ -160,7 +160,7 @@ with tab5:
     st.markdown("""
                     Afin d'améliorer les résultats je suis parti sur des méthodes d'optimisation.  
                     J'ai créé un nouveau jeu de données qui reprend uniquement les noeuds du réseau.
-                    J'ai ensuite utilisé mon meilleur modèle de régression pour avoir des paramètres plus optimisés.
+                    J'ai ensuite utilisé mon meilleur modèle de régression pour avoir des paramètres plus optimisés.  
                     Puis j'ai utilisé deux méthodes.
 
                     1) La première méthode est l'optimisation pas à pas.  
