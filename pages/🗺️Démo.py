@@ -271,7 +271,7 @@ else:
             with colmesg:
                 st.error('''
                             Le point de départ n'est pas dans Paris.  
-                            Cliquer sur le bouton Restart puis cliquer sur la carte dans Paris.
+                            Cliquer sur la carte, dans Paris.
                            ''')
                 # Style css de st.error
                 st.markdown(css_box_error, unsafe_allow_html=True)
