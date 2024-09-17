@@ -144,7 +144,7 @@ def bouton_restart():
             key="Bouton_RESTART",
             css_styles = css_styles_restart  
         ):
-        if st.button("Reinitialiser"):
+        if st.button("Reinitialiser !"):
             # réinitialisation des données
             st.session_state['dist'] = 10000
             st.session_state['location'] = CENTER_START
