@@ -42,6 +42,7 @@ with tab1:
                         La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètres d'un algorithme qui génère un itinéraire.
                                 
                         Pour cela un algorithme a été dévelopé, des jeux de données créés et des modèles de prédictions entraînés.
+                          
                         Et enfin à travers l'analyse des résultats et des méthodes d'optimisation les prédictions ont été optimisées.
                     """)
 
