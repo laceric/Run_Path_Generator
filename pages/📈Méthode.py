@@ -41,8 +41,8 @@ with tab1:
         st.markdown("""
                         La méthode principale de ce projet tourne autour de la capacité à déterminer les bonnes valeurs des paramètres d'un algorithme qui génère un itinéraire.
                                 
-                        Pour cela J'ai dù coder un algorithme, créer des jeux de données, entraîner des modèles de prédictions.
-                        Et enfin optimiser ces prédictions à travers l'analyse et des méthodes d'optimisation.
+                        Pour cela un algorithme a été dévelopé, des jeux de données créés et des modèles de prédictions entraînés.
+                        Et enfin à travers l'analyse des résultats et des méthodes d'optimisation les prédictions ont été optimisées.
                     """)
 
 #####################################################################################################
@@ -151,16 +151,16 @@ with tab4:
 
 with tab5:
     st.markdown("""
-                    Afin d'améliorer les résultats je suis parti sur des méthodes d'optimisation.  
-                    J'ai créé un nouveau jeu de données qui reprend uniquement les noeuds du réseau.
-                    J'ai ensuite utilisé mon meilleur modèle de régression pour avoir des paramètres plus optimisés.  
-                    Puis j'ai utilisé deux méthodes.
+                    Afin d'améliorer les résultats on utilise des méthodes d'optimisation.  
+                    On crée un nouveau jeu de données qui reprend uniquement les noeuds du réseau.
+                    Ensuite on récupère le meilleur modèle de régression pour avoir des paramètres plus optimisés.  
+                    Puis on utilise deux méthodes.
 
                     1) La première méthode est l'optimisation pas à pas.  
-                    J'ai ainsi obtenue pour chaque noeud la valeur du paramètre la plus optimale possible.
+                    On obtient pour chaque noeud la valeur du paramètre la plus optimale possible.
                 
                     2) La seconde méthode est l'optimisation par le meilleur voisin.
-                    J'ai cherché le voisin qui donne le meilleur résultat en cumulant son parcours avec la distance du noeud initial.
+                    On cherche le voisin qui donne le meilleur résultat en cumulant son parcours avec la distance du noeud initial.
                     Cette dernière a véritablement permis de compenser une partie des défauts de l'algorithme de départ.
                 """)
 
