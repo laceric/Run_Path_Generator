@@ -50,3 +50,6 @@ with demo:
         ):
         if st.button("Démo ➡"):
             switch_page("démo")
+
+# Lien GitHub
+st.markdown('[Cliquez ici pour visiter le repo GitHub](https://github.com/laceric/Run_Path_Generator)')
