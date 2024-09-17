@@ -62,7 +62,7 @@ with tab2:
     col1, col2 = st.columns([5,5])
     with col1:
         st.markdown("""
-                        1) On définit un point central qui se trouve entre le point de départ le centre de Paris et à une certaine distance (topographique) R du point de départ.
+                        1) On définit un point central qui se trouve entre le point de départ et le centre de Paris. Ce point central doit également être à une certaine distance (topographique) R du point de départ.
                     """)
         st.markdown(css_sous_titre_start +
                     """
@@ -111,7 +111,7 @@ with tab3:
 
     st.markdown(css_sous_titre_start +
                 """
-                    On supprime les zones qui n'ont pas de noeud (point) et on génère des échantillons dans les autres de sorte à couvrir uniformément la surface de Paris.
+                    On supprime les zones qui n'ont pas de noeud (point orange). Ensuite on génère pour chaque zone restante 8 échantillons aléatoirement de sorte à couvrir uniformément la surface de Paris.
                 """
                 + css_sous_titre_end, unsafe_allow_html=True)
 
@@ -137,6 +137,13 @@ with tab4:
     
     add_vertical_space(3)
     lecture_image(["Images", "methode", "cible_avant.jpg"])
+
+    st.markdown(css_sous_titre_start +
+                """
+                    La moitié supérieure représente les résultats où a une distance supérieure à 10km et la moitié inférieure ceux avec une distance inférieure à 10km.
+                    Les % correspondent au nombre de cas sous la limite (en mètre) correspondante.
+                """
+                + css_sous_titre_end, unsafe_allow_html=True)
 
 #####################################################################################################
 # Optimisation des résultats
