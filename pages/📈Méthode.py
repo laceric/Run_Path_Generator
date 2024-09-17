@@ -142,7 +142,7 @@ with tab4:
     st.markdown(css_sous_titre_start +
                 """
                     La moitié supérieure représente les résultats où a une distance supérieure à 10km et la moitié inférieure ceux avec une distance inférieure à 10km.
-                    Les % correspondent au nombre de cas sous la limite (en mètre) correspondante.
+                    Les % correspondent au nombre de cas sous la limite correspondante.
                 """
                 + css_sous_titre_end, unsafe_allow_html=True)
 
