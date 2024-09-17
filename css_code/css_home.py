@@ -18,7 +18,7 @@ css_sidebar = f"""
                 </style>
                 """
 
-css_orange_sep = '<div style="height: 4px; background-color: orange; margin: 0px; width: 90%;"></div>'
+css_orange_sep = '<div style="height: 4px; background-color: orange; margin: 0px; width: 85%;"></div>'
 
 css_styles_demo = [
                 """
