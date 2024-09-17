@@ -85,7 +85,7 @@ css_styles_GPX = [
 css_styles_restart = [
                 """
                 button {
-                        width: 100px; /* Largeur du bouton */
+                        width: 140px; /* Largeur du bouton */
                         height: 60px; /* Hauteur du bouton */
                         background: linear-gradient(to right, #ff7e5f, #feb47b);
                         color: white;
