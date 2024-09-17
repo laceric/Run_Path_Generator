@@ -107,6 +107,13 @@ css_styles_restart = [
                     box-shadow: 0px 5px 15px rgba(0, 0, 0, 1); 
                 }
                 """
+                ,
+                """
+                p {
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+                """
                     ]
 
 css_box_info = '''
