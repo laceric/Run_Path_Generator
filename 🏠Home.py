@@ -41,19 +41,12 @@ st.write("""
 
 add_vertical_space(2)
 
-_, demo, methode, _ = st.columns([1, 8, 8, 1])
+_, demo, _ = st.columns([1, 2, 1])
 
 with demo:
     with stylable_container(
             key="Bouton_DEMO",
             css_styles = css_styles_demo 
         ):
-        if st.button("⬅ démo"):
+        if st.button("Démo ➡"):
             switch_page("démo")
-with methode:
-    with stylable_container(
-            key="Bouton_Methode",
-            css_styles = css_styles_methode
-        ):
-        if st.button("méthode ➡"):
-            switch_page("Méthode")
