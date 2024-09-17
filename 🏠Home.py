@@ -16,7 +16,7 @@ st.markdown(css_sidebar, unsafe_allow_html=True)
 
 
 
-st.title("Votre itinéraire de 10 Km dans Paris !")
+st.title("Itinéraire de 10 Km dans Paris !")
 st.write(css_orange_sep, unsafe_allow_html=True)
 
 
